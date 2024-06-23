@@ -2,10 +2,15 @@
 
 namespace HidLibrary
 {
+    public class HidReportExtraData
+    {
+        public string DevicePath { get; set; }
+    }
+
     public class HidReport
     {
         private byte _reportId;
-        private byte[] _data = new byte[] {};
+        private byte[] _data = new byte[] { };
 
         private readonly HidDeviceData.ReadStatus _status;
 
@@ -71,5 +76,7 @@ namespace HidLibrary
             Array.Copy(_data, 0, data, 1, _data.Length);
             return data;
         }
+
+        public HidReportExtraData ExtraData { get; set; } = new HidReportExtraData();
     }
 }

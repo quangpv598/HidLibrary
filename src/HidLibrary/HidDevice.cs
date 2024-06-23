@@ -168,7 +168,9 @@ namespace HidLibrary
 
         public HidReport ReadReport(int timeout)
         {
-            return new HidReport(Capabilities.InputReportByteLength, Read(timeout));
+            var hidReport = new HidReport(Capabilities.InputReportByteLength, Read(timeout));
+            hidReport.ExtraData.DevicePath = this.DevicePath;
+            return hidReport;
         }
 
         public void ReadReport(ReadReportCallback callback)
